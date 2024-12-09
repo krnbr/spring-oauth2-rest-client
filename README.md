@@ -19,16 +19,16 @@ The scenarios covered by this POC are listed in the table below, which are backe
 
 <div class="scenarios">
 
-| Scenario | upstream endpoint | Token Endpoint | Resource Endpoint | Downstream Token Endpoint              | Downstream Resource Endpoint |
-|----------|-------------------|----------------|-------------------|----------------------------------------|------------------------------|
-| 1        | /ping             | tls            | tls               | https://localhost:8453/oauth2/v2/token | https://localhost:8453/ping  |
-|          |                   |                |                   |                                        |                              |
-| 2        | /v1/ping          | mtls           | tls               | https://localhost:8443/oauth2/v2/token | https://localhost:8453/ping  |
-|          |                   |                |                   |                                        |                              |
-| 3        | /v2/ping          | tls            | mtls              | https://localhost:8453/oauth2/v2/token | https://localhost:8443/ping  |
-|          |                   |                |                   |                                        |                              |
-| 4        | /v3/ping          | mtls           | mtls              | https://localhost:8443/oauth2/v2/token | https://localhost:8443/ping  |
-|          |                   |                |                   |                                        |                              |
+| Scenario | upstream endpoint | Token Endpoint | Resource Endpoint | Downstream Token Endpoint           | Downstream Resource Endpoint     |
+|----------|-------------------|----------------|-------------------|-------------------------------------|----------------------------------|
+| 1        | /ping             | tls            | tls               | https://localhost:8453/oauth2/token | https://localhost:8453/mock/ping |
+|          |                   |                |                   |                                     |                                  |
+| 2        | /v1/ping          | mtls           | tls               | https://localhost:8443/oauth2/token | https://localhost:8453/mock/ping |
+|          |                   |                |                   |                                     |                                  |
+| 3        | /v2/ping          | tls            | mtls              | https://localhost:8453/oauth2/token | https://localhost:8443/mock/ping |
+|          |                   |                |                   |                                     |                                  |
+| 4        | /v3/ping          | mtls           | mtls              | https://localhost:8443/oauth2/token | https://localhost:8443/mock/ping |
+|          |                   |                |                   |                                     |                                  |
 
 </div>
 
