@@ -1,6 +1,6 @@
-package in.neuw.oauth2.client.utils;
+package in.neuw.oauth2.utils;
 
-import in.neuw.oauth2.client.exceptions.BootTimeException;
+import in.neuw.oauth2.exceptions.BootTimeException;
 import lombok.SneakyThrows;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

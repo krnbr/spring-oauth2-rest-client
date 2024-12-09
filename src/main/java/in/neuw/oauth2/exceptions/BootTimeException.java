@@ -1,4 +1,4 @@
-package in.neuw.oauth2.client.exceptions;
+package in.neuw.oauth2.exceptions;
 
 public class BootTimeException extends RuntimeException {
 

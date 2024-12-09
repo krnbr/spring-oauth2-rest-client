@@ -29,6 +29,8 @@ The scenarios covered by this POC are listed in the table below, which are backe
 |          |                   |                |                   |                                     |                                  |
 | 4        | /v3/ping          | mtls           | mtls              | https://localhost:8443/oauth2/token | https://localhost:8443/mock/ping |
 |          |                   |                |                   |                                     |                                  |
+| 5        | /bonus/ping       | tls            | tls               | https://localhost:8453/oauth2/token | https://localhost:8453/mock/ping |
+|          |                   |                |                   |                                     |                                  |
 
 </div>
 

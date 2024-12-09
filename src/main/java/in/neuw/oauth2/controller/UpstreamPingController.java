@@ -1,6 +1,7 @@
-package in.neuw.oauth2.client.controller;
+package in.neuw.oauth2.controller;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import in.neuw.oauth2.client.MockApiClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestClient;
@@ -18,14 +19,17 @@ public class UpstreamPingController {
 
     private final RestClient restClientV3;
 
+    private final MockApiClient mockApiClient;
+
     public UpstreamPingController(RestClient restClient,
                                   RestClient restClientV2,
                                   RestClient restClientV3,
-                                  RestClient defaultRestClientV1) {
+                                  RestClient defaultRestClientV1, MockApiClient mockApiClient) {
         this.restClient = restClient;
         this.restClientV2 = restClientV2;
         this.restClientV3 = restClientV3;
         this.defaultRestClientV1 = defaultRestClientV1;
+        this.mockApiClient = mockApiClient;
     }
 
     /**
@@ -38,6 +42,11 @@ public class UpstreamPingController {
                 .attributes(clientRegistrationId("clientV1"))
                 .retrieve()
                 .body(ObjectNode.class);
+    }
+
+    @GetMapping("/bonus/ping")
+    public ObjectNode bonusPing() {
+        return this.mockApiClient.ping();
     }
 
     /**

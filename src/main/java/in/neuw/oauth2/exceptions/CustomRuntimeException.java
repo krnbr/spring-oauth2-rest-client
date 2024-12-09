@@ -1,4 +1,4 @@
-package in.neuw.oauth2.client.exceptions;
+package in.neuw.oauth2.exceptions;
 
 import lombok.Getter;
 import org.springframework.http.HttpStatusCode;

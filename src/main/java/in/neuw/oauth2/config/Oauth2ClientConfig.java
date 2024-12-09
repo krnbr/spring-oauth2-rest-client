@@ -1,6 +1,7 @@
-package in.neuw.oauth2.client.config;
+package in.neuw.oauth2.config;
 
-import in.neuw.oauth2.client.utils.MtlsConfigCompanion;
+import in.neuw.oauth2.client.MockApiClient;
+import in.neuw.oauth2.utils.MtlsConfigCompanion;
 import jakarta.annotation.PostConstruct;
 import lombok.SneakyThrows;
 import org.apache.hc.client5.http.config.TlsConfig;
@@ -28,9 +29,13 @@ import org.springframework.security.oauth2.client.web.client.OAuth2ClientHttpReq
 import org.springframework.security.oauth2.core.http.converter.OAuth2AccessTokenResponseHttpMessageConverter;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.client.RestClient;
+import org.springframework.web.client.support.RestClientAdapter;
+import org.springframework.web.service.invoker.HttpServiceProxyFactory;
 
 import java.security.KeyStore;
 import java.time.Duration;
+
+import static org.springframework.security.oauth2.client.web.client.RequestAttributeClientRegistrationIdResolver.clientRegistrationId;
 
 @Configuration
 @EnableWebSecurity
@@ -105,10 +110,32 @@ public class Oauth2ClientConfig {
         return builder
                 .requestInterceptor(oAuth2ClientHttpRequestInterceptor)
                 .baseUrl(downstreamBasePath)
+                // set this if you do not want to include the attributes while calling, or in case of http interfaces
                 /*.defaultRequest(d -> {
                     d.attributes(clientRegistrationId("clientV1"));
                 })*/
                 .build();
+    }
+
+    @Bean
+    public RestClient restClientWithAttributes(RestClient.Builder builder,
+                                               OAuth2AuthorizedClientManager authorizedClientManager,
+                                               @Value("${downstream.base-path}") String downstreamBasePath) {
+        var oAuth2ClientHttpRequestInterceptor = new OAuth2ClientHttpRequestInterceptor(authorizedClientManager);
+        return builder
+                .requestInterceptor(oAuth2ClientHttpRequestInterceptor)
+                .baseUrl(downstreamBasePath)
+                .defaultRequest(d -> {
+                    d.attributes(clientRegistrationId("clientV1"));
+                })
+                .build();
+    }
+
+    @Bean
+    public MockApiClient mockApiClient(RestClient restClientWithAttributes) {
+        RestClientAdapter adapter = RestClientAdapter.create(restClientWithAttributes);
+        HttpServiceProxyFactory factory = HttpServiceProxyFactory.builderFor(adapter).build();
+        return factory.createClient(MockApiClient.class);
     }
 
     /**
