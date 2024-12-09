@@ -29,10 +29,8 @@ import org.springframework.security.oauth2.core.http.converter.OAuth2AccessToken
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.client.RestClient;
 
-import java.security.*;
+import java.security.KeyStore;
 import java.time.Duration;
-
-import static org.springframework.security.oauth2.client.web.client.RequestAttributeClientRegistrationIdResolver.clientRegistrationId;
 
 @Configuration
 @EnableWebSecurity
@@ -195,8 +193,6 @@ public class Oauth2ClientConfig {
         var tlsConfig = new TlsConfig.Builder()
                 // TODO: tls config as per other needs
                 .build();
-
-        // ClientCredentialsOAuth2AuthorizedClientProvider
 
         var httpClientConnectionManager = PoolingHttpClientConnectionManagerBuilder.create()
                 .setTlsSocketStrategy(defaultS)

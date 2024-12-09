@@ -31,3 +31,5 @@ The scenarios covered by this POC are listed in the table below, which are backe
 |          |                   |                |                   |                                        |                              |
 
 </div>
+
+The property - `client.cert.keystore` can be a JKS or a P12 which is encoded to base64.
