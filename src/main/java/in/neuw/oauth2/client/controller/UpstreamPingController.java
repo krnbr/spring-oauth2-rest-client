@@ -28,6 +28,9 @@ public class UpstreamPingController {
         this.defaultRestClientV1 = defaultRestClientV1;
     }
 
+    /**
+     * Downstream token and resource endpoint are normal TLS endpoints, no MTLS
+     */
     @GetMapping("/ping")
     public ObjectNode ping() {
         return this.defaultRestClientV1.get()
@@ -37,6 +40,9 @@ public class UpstreamPingController {
                 .body(ObjectNode.class);
     }
 
+    /**
+     * Downstream token endpoint is mtls and resource endpoint is normal TLS endpoint
+     */
     @GetMapping("/v1/ping")
     public ObjectNode pingV1() {
         return this.restClient.get()
@@ -46,6 +52,9 @@ public class UpstreamPingController {
                 .body(ObjectNode.class);
     }
 
+    /**
+     * Downstream token endpoint is TLS and resource endpoint is MTLS endpoint
+     */
     @GetMapping("/v2/ping")
     public ObjectNode pingV2() {
         return this.restClientV2.get()
@@ -55,6 +64,9 @@ public class UpstreamPingController {
                 .body(ObjectNode.class);
     }
 
+    /**
+     * Both Downstream token and resource endpoint are MTLS
+     */
     @GetMapping("/v3/ping")
     public ObjectNode pingV3() {
         return this.restClientV3.get()
