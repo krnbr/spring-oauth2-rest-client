@@ -34,7 +34,7 @@ public class UpstreamPingController {
     @GetMapping("/ping")
     public ObjectNode ping() {
         return this.defaultRestClientV1.get()
-                .uri("/ping")
+                .uri("/mock/ping")
                 .attributes(clientRegistrationId("clientV1"))
                 .retrieve()
                 .body(ObjectNode.class);
@@ -46,7 +46,7 @@ public class UpstreamPingController {
     @GetMapping("/v1/ping")
     public ObjectNode pingV1() {
         return this.restClient.get()
-                .uri("/ping")
+                .uri("/mock/ping")
                 .attributes(clientRegistrationId("clientV2"))
                 .retrieve()
                 .body(ObjectNode.class);
@@ -58,7 +58,7 @@ public class UpstreamPingController {
     @GetMapping("/v2/ping")
     public ObjectNode pingV2() {
         return this.restClientV2.get()
-                .uri("/ping")
+                .uri("/mock/ping")
                 .attributes(clientRegistrationId("clientV1"))
                 .retrieve()
                 .body(ObjectNode.class);
@@ -70,7 +70,7 @@ public class UpstreamPingController {
     @GetMapping("/v3/ping")
     public ObjectNode pingV3() {
         return this.restClientV3.get()
-                .uri("/ping")
+                .uri("/mock/ping")
                 .attributes(clientRegistrationId("clientV2"))
                 .retrieve()
                 .body(ObjectNode.class);
