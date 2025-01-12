@@ -131,6 +131,9 @@ public class Oauth2ClientConfig {
                 .build();
     }
 
+    /**
+     * the initialization of the exchange based on above rest client
+     */
     @Bean
     public MockApiClient mockApiClient(RestClient restClientWithAttributes) {
         RestClientAdapter adapter = RestClientAdapter.create(restClientWithAttributes);
