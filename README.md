@@ -1,5 +1,5 @@
 The scenarios covered by this POC are listed in the table below, which are backed by the mock server part of the repo [here](https://github.com/krnbr/mocks):-
-
+<!---
 <style>
     .scenarios {
         color-scheme: only light;
@@ -15,7 +15,7 @@ The scenarios covered by this POC are listed in the table below, which are backe
     .scenarios tr:nth-child(even) {background: #CCC}
     .scenarios tr:nth-child(odd) {background: #FFF;}
     .scenarios tr:nth-child(odd) td {height: 1px}
-</style>
+</style>-->
 
 <div class="scenarios">
 
